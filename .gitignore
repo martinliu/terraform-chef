@@ -7,3 +7,12 @@ bin/*
 
 .kitchen/
 .kitchen.local.yml
+
+.DS_Store
+
+.terraform/
+
+.delivery/
+
+
+
