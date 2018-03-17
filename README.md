@@ -1,25 +1,25 @@
-# DevOps教练 的测试机准备
+# DevOps教练准备测试机
 
-环境准备 environment variables:
+环境准备 
 
 ```sh
 export AWS_ACCESS_KEY_ID=(your access key id)
 export AWS_SECRET_ACCESS_KEY=(your secret access key)
 ```
 
-确认模板 Validate the templates:
+确认模板 
 
 ```sh
 terraform plan
 ```
 
-执行IaC代码 Deploy the code:
+执行IaC代码 
 
 ```sh
 terraform apply
 ```
 
-在以上代码执行结束以后，成功的结果会返回 ec2 实例的公网 IP地址。 然后用 knife 配置这个节点。 When the `apply` command completes, it will output the public IP address of the server. 
+在以上代码执行结束以后，成功的结果会返回 ec2 实例的公网 IP地址。 然后用 knife 配置这个节点。 
 
 Bootstrap 初始化节点 node.
 
@@ -29,7 +29,7 @@ martin@mbp:~/chef-repo $ knife bootstrap -k /Users/martin/chef-repo/.chef/xxxxx.
 
 ```
 
-清除本次的测试环境 Clean up when you're done:
+清除本次的测试环境 
 
 ```sh
 
