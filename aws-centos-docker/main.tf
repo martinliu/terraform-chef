@@ -23,11 +23,35 @@ resource "aws_instance" "docker" {
   user_data = <<-EOF
               #!/bin/bash
               echo "Hello, World" > index.html
-              EOF
+            EOF
 
   # 打标签
   tags {
     Name = "terraform-docker"
+  }
+
+  provisioner "chef" {
+    server_url      = "${var.chef_provision.["server_url"]}"
+    user_name       = "${var.chef_provision.["user_name"]}"
+    user_key        = "${file("${var.chef_provision.["user_key_path"]}")}"
+    node_name       = "my-docker-host"
+    run_list        = ["recipe[workstation],recipe[mydocker]"]
+    recreate_client = "${var.chef_provision.["recreate_client"]}"
+    on_failure      = "continue"
+
+    attributes_json = <<-EOF
+      {
+        "tags": [
+          "my-docker-host"
+        ]
+      }
+    EOF
+
+    connection {
+      type        = "ssh"
+      user        = "centos"
+      private_key = "~/test-tokyo.pem"
+    }
   }
 }
 
