@@ -1,4 +1,4 @@
-# DevOps教练的测试机准备
+# DevOps教练 的测试机准备
 
 环境准备 environment variables:
 
@@ -13,7 +13,7 @@ export AWS_SECRET_ACCESS_KEY=(your secret access key)
 terraform plan
 ```
 
-执行模板 Deploy the code:
+执行IaC代码 Deploy the code:
 
 ```sh
 terraform apply
@@ -25,20 +25,14 @@ Bootstrap 初始化节点 node.
 
 ```sh
 
-martin@mbp:~/chef-repo $ pwd
-/Users/martin/chef-repo
-
-martin@mbp:~/chef-repo $ knife bootstrap -k /Users/martin/chef-repo/.chef/martinliu.pem --ssh-user centos --sudo  -i ~/test-tokyo.pem $public_ip  -N docker1 --run-list "recipe[workstation],recipe[mydocker],recipe[myjava]" -y
+martin@mbp:~/chef-repo $ knife bootstrap -k /Users/martin/chef-repo/.chef/xxxxx.pem --ssh-user centos --sudo  -i ~/xxxxxx.pem $public_ip  -N docker1 --run-list "recipe[workstation],recipe[mydocker],recipe[myjava]" -y
 
 ```
 
-Clean up when you're done:
+清除本次的测试环境 Clean up when you're done:
 
-```bash
+```sh
 
 terraform destroy
 
 ```
-
-
- knife bootstrap  --ssh-user centos --sudo   $public_ip  -N docker1 --run-list "recipe[workstation],recipe[mydocker]" -y
